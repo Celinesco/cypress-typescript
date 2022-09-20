@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# Cypress con Typescript.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Instalar:
 
-## Available Scripts
+```
+npm install cypress --save-dev
+npm install --save-dev typescript
+```
 
-In the project directory, you can run:
+### Agregar dentro de la carpeta cypress
 
-### `npm start`
+tsconfig.json file
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```json
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": "../node_modules",
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node"]
+  },
+  "include": ["**/*.*"]
+}
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Para los specs files:
 
-### `npm test`
+Crear carpeta component dentro de cypress:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+nombre_componente.cy.tsx
 
-### `npm run build`
+En la parte superior del spec file:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+/// <reference path="../support/component.ts" />;
+import MiComponente from '../../src/MiComponente';
+import React from 'react';
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Para correr cypress :
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npx cypress open
+```
 
-### `npm run eject`
+Alternativamente podes abrir solo el componente
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npx cypress open --component
+```
