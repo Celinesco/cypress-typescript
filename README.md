@@ -27,15 +27,17 @@ tsconfig.json file
 
 ### Para los specs files:
 
-Crear carpeta component dentro de cypress:
+Crear carpeta 'component' dentro de cypress:
 
 nombre_componente.cy.tsx
 
 En la parte superior del spec file:
 
+```ts
 /// <reference path="../support/component.ts" />;
-import MiComponente from '../../src/MiComponente';
-import React from 'react';
+import MiComponente from "../../src/MiComponente";
+import React from "react";
+```
 
 #### Para correr cypress :
 
